@@ -1,0 +1,85 @@
+{% if section.settings.gradient_bg %}
+<div id="shopify-section-{{ section.id }}" class="flex flex-col items-center py-10" style="background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%);padding-top:{{section.settings.padding_top}}px; padding-bottom:{{section.settings.padding_bottom}}px">
+{% else %}  
+<div id="shopify-section-{{ section.id }}" class="flex flex-col items-center py-10 " style="background:{{ section.settings.custom_bg_color }}; padding-top:{{section.settings.padding_top}}px; padding-bottom:{{section.settings.padding_bottom}}px">
+{% endif %}
+  <h2 class="text-center text-3xl md:text-4xl pb-4">{{ section.settings.title }}</h2>
+  <div class="max-w-7xl	mx-auto px-2 md:px-0">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
+        {% render 'product-card', product_product: product %}
+      {% else %}
+        {% for item in (1..4) %}
+          {% render 'product-card-placeholder' %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Featured Collection",
+        "label": "Title"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "number_of_products_to_show",
+        "min": 4,
+        "max": 12,
+        "default": 4,
+        "label": "Number of products to show"
+      },
+      {
+        "type": "checkbox",
+        "id": "gradient_bg",
+        "label": "Is Gradient Background ?",
+        "default": false
+      }, 
+      {
+        "type": "color",
+        "id": "custom_bg_color",
+        "label": "Section Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding Top",
+        "min": 0,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding Bottom",
+        "min": 0,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection"
+      }
+    ]
+  }
+{% endschema %}

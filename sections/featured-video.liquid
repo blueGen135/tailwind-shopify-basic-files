@@ -1,0 +1,50 @@
+<div id="video-section-{{ section.id }}" style="padding-top:{{section.settings.padding_top}}px; padding-bottom:{{section.settings.padding_bottom}}px">
+  <div id="bgc__video--container" class="relative max-w-7xl	mx-auto py-10 px-2 md:px-0">
+    <div id="bgc__video--bg" class="z-0 overflow-hidden opacity-90">
+      <video
+        class="bg-video__content w-full rounded-xl"
+        autoplay=""
+        muted=""
+        loop="">
+        <source src="{{ section.settings.video_file.sources[1].url }}" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+
+{%- schema -%}
+  {
+    "name": "Featured Video",
+    "settings": [
+      {
+        "type": "video",
+        "id": "video_file",
+        "label": "Video"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding Top",
+        "min": 0,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding Bottom",
+        "min": 0,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Video"
+      }
+    ]
+  }
+{%- endschema -%}

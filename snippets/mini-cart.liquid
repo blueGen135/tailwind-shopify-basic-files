@@ -1,0 +1,6 @@
+<div @click.outside="showCart = false" x-data="{ showCart: false }" x-show="showCart" @toggle-cart.window="showCart = !showCart" id="search__container" class=" fixed top-3 right-3 rounded-[15px] p-5 shadow-md bg-purple-50" x-show="showCart" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700" x-transition:enter-start="translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100" x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full opacity-0">
+  <button type="button" class="border w-9 h-9 rounded-full flex justify-center items-center absolute top-0 left-0 hover:rotate-90 transition-all" @click="showCart = false">
+    {%- render 'icon-close' -%}
+  </button>
+
+</div>

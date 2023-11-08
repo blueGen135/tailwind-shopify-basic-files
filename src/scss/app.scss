@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    p{
+        @apply text-base md:text-base leading-4;
+    }
+    h1{
+        @apply text-2xl md:text-4xl lg:text-6xl py-2 text-black
+    }
+    h3{
+        @apply text-lg md:text-4xl uppercase py-2 text-black
+    }
+   
+}
+.super-z-index{z-index: 999;}
+html {scroll-behavior: smooth;}
+   .richText p { font-size: 15px;}
+  .product-card {position: relative;}
+  .product-card img {opacity: 1;transition: opacity 0.3s ease;}
+  .product-second-image {opacity: 0 !important;}
+  .product-card:hover .product-first-image{ opacity:0  }
+  .product-card:hover .product-second-image{ opacity:1 !important }
+  #loader {position: fixed;top: 0;left: 0;width: 100%;background: rgba(0, 0, 0, 0.7);height: 100vh;}
+  #product-cart-success {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .inner-cart-success {
+    max-width: 600px;
+    background: #fff;
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 2px;
+    padding: 10px;
+    text-align: center;
+  }
+
+.shopify-policy__container {
+  max-width: 72rem !important;
+}
+
+.shopify-policy__title h1 {
+  font-size: 24px !important;
+  line-height: 2rem;
+  text-align: left;
+  padding: 26px 0px;
+}
+.shopify-policy__body h3 {
+  font-size: 16px;
+  background: #eee;
+  margin: 10px 0px;
+  padding: 0px 16px;
+}
+
+.shopify-policy__body p {
+  font-size: 15px;
+}
+.shopify-policy__body {
+  margin: 25px 0px;
+}
+
+/*Navigation*/
+
+.header {transition: all 0.5s;z-index: 997;padding: 10px 0;}
+.header .logo {transition: 0.3s;}
+.navbar {padding: 0;}
+.navbar li {position: relative;}
+.navbar .dropdown:hover>ul {opacity: 1;top: 100%;visibility: visible;}
+.navbar .dropdown .dropdown ul {top: 0;left: calc(100% - 30px);visibility: hidden;}
+.navbar .dropdown .dropdown:hover>ul {opacity: 1;top: 0;left: 100%;visibility: visible;}
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+   display: flex;
+   position: fixed;
+   inset: 0;
+   width: 100%;
+   height: 100vh;
+   z-index: 99999;
+}
+
+#preloader:before,
+#preloader:after {
+   content: "";
+   background-color: rgba(0,0,0,.8);
+   position: absolute;
+   inset: 0;
+   width: 50%;
+   height: 100%;
+   transition: all 0.3s ease 0s;
+   z-index: -1;
+}
+
+#preloader:after {
+   left: auto;
+   right: 0;
+}
+
+#preloader .line {
+   position: relative;
+   overflow: hidden;
+   margin: auto;
+   width: 5px;
+   height: 280px;
+   transition: all 0.8s ease 0s;
+}
+
+#preloader .line:before {
+   content: "";
+   position: absolute;
+   background-color: #fff;
+   left: 0;
+   top: 50%;
+   width: 1px;
+   height: 0%;
+   transform: translateY(-50%);
+   animation: lineincrease 800ms ease-in-out 0s forwards;
+   -webkit-animation: lineincrease 800ms ease-in-out 0s forwards;
+}
+
+#preloader .line:after {
+   content: "";
+   position: absolute;
+   background-color: #000;
+   left: 0;
+   top: 0;
+   width: 1px;
+   height: 100%;
+   transform: translateY(-100%);
+   animation: linemove 1200ms linear 0s infinite;
+   animation-delay: 1500ms;
+}
+
+#preloader.loaded .line {
+   opacity: 0;
+   height: 100% !important;
+}
+
+#preloader.loaded .line:after {
+   opacity: 0;
+}
+
+#preloader.loaded:before,
+#preloader.loaded:after {
+   animation: preloaderfinish 200ms ease-in-out 300ms forwards;
+   -webkit-animation: preloaderfinish 200ms ease-in-out 300ms forwards;
+}
+
+@keyframes lineincrease {
+   0% {
+       height: 0%;
+   }
+
+   100% {
+       height: 100%;
+   }
+}
+
+@keyframes linemove {
+   0% {
+       transform: translateY(200%);
+   }
+
+   100% {
+       transform: translateY(-100%);
+   }
+}
+
+@keyframes preloaderfinish {
+   0% {
+       width: 5 0%;
+   }
+
+   100% {
+       width: 0%;
+   }
+}
+
+/*--------------------------------------------------------------
+# Scroll top button
+--------------------------------------------------------------*/
+.scroll-top {
+   position: fixed;
+   visibility: hidden;
+   opacity: 0;
+   right: 3px;
+   bottom: -15px;
+   z-index: 99999;
+  transition: all 0.4s;
+}
+
+.scroll-top.active {
+   visibility: visible;
+   opacity: 1;
+   bottom: 60px;
+}
+
+#the_filters {
+	z-index: 99;
+}
+.filter-group-display__list {
+	max-height: 250px;
+	overflow-y: scroll;
+}
+.fixed-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+// Collection filter
+.filter-form{
+   .filter-group{
+       &[open]{
+           .arrow-icon{
+               svg{
+                   transform: rotate(90deg);
+               }
+           }
+       }
+   }
+}

@@ -1,0 +1,73 @@
+<div
+  id="shopify-section-{{section.id}}"
+  style="background-color:{{ section.settings.bg_color }}"
+  class="{{section.settings.height}}"></div>
+
+{% schema %}
+  {
+    "name": "Spacer",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Choose Background color",
+        "default": "#ffffff"
+      }, {
+        "type": "select",
+        "id": "height",
+        "label": "Height",
+        "options": [
+          {
+            "value": "h-1",
+            "label": "4 PX"
+          },
+          {
+            "value": "h-2",
+            "label": "8 PX"
+          },
+          {
+            "value": "h-3",
+            "label": "12 PX"
+          },
+          {
+            "value": "h-4",
+            "label": "16 PX"
+          }, {
+            "value": "h-5",
+            "label": "20 PX"
+          }, {
+            "value": "h-6",
+            "label": "24 PX"
+          }, {
+            "value": "h-7",
+            "label": "28 PX"
+          }, {
+            "value": "h-8",
+            "label": "32 PX"
+          }, {
+            "value": "h-10",
+            "label": "40 PX"
+          }, {
+            "value": "h-12",
+            "label": "48 PX"
+          }, {
+            "value": "h-14",
+            "label": "56 PX"
+          }, {
+            "value": "h-20",
+            "label": "80 PX"
+          }, {
+            "value": "h-24",
+            "label": "96 PX"
+          }
+        ],
+        "default": "h-1"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Spacer"
+      }
+    ]
+  }
+{% endschema %}

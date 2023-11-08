@@ -1,0 +1,181 @@
+<section id="shopify-section-{{ section.id }}" style="background:{{ section.settings.custom_bg_color }}; padding-top:{{section.settings.padding_top}}px; padding-bottom:{{section.settings.padding_bottom}}px">
+  <div class=" container mx-auto max-w-7xl px-2 md:px-0">
+
+    {% if section.settings.layout == 'left' %}
+
+      <div class="grid md:grid-cols-2 gap-10 ">
+        <div class=" h-full flex items-center">
+          {% if section.settings.image != blank %}
+            <img
+              src="{{ section.settings.image |  img_url: 'master' }}"
+              alt=""
+              class="m-auto rounded-md">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+
+        <div class=" h-full flex items-center">
+          <div class="image-with-text__text text-{{ section.settings.text_alignment }}">
+            {% if section.settings.centered_logo == blank %}
+              {% if section.settings.title != blank %}
+                <h2 class="text-2xl md:text-4xl" style="color:{{ section.settings.text_color }}">{{ section.settings.title | escape }}</h2>
+              {% endif %}
+            {% endif %}
+            {% if section.settings.text != blank %}
+              <p class="pt-3 text-{{ section.settings.font_size }}" style="color:{{ section.settings.text_color }}">{{ section.settings.text }}</p>
+            {% endif %}
+
+            <a href="{{ section.settings.button_link }}" class=" mt-8 relative w-52 flex justify-center items-center gap-5 m-auto uppercase ">
+              <span>{{ section.settings.button_label | escape }}</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="grid md:grid-cols-2 gap-10">
+
+        <div class=" h-full flex items-center">
+          <div class="image-with-text__text text-{{ section.settings.text_alignment }}">
+            {% if section.settings.centered_logo == blank %}
+              {% if section.settings.title != blank %}
+                <h2 class="text-2xl md:text-4xl" style="color:{{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+              {% endif %}
+            {% endif %}
+            {% if section.settings.text != blank %}
+              <p class="pt-3 text-{{ section.settings.font_size }}" style="color:{{ section.settings.text_color }}">{{ section.settings.text }}</p>
+            {% endif %}
+
+            {% if section.settings.button_label %}
+              <a href="{{ section.settings.btn_url }}" class=" inline-flex items-center justify-center rounded-lg primaryDarkBg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
+                <span>{{ section.settings.button_label | escape }}</span>
+              </a>
+            {% endif %}
+
+          </div>
+        </div>
+
+        <div class=" h-full flex items-center">
+          {% if section.settings.image != blank %}
+            <img
+              src="{{ section.settings.image |  img_url: 'master' }}"
+              alt=""
+              class="m-auto">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+      </div>
+
+
+    {% endif %}
+
+
+  </div>
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Image with text",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "custom_bg_color",
+        "label": "Section Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Section Text Color",
+        "default": "#000"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }, {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      }, {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Text",
+        "default": "Read More"
+      }, {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button Link"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding Top",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "default": 10
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding Bottom",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "default": 10
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Image with text",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

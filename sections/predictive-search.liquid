@@ -1,0 +1,33 @@
+{%- if predictive_search.performed -%}
+  <div id="predictive-search-results">
+    <div class="w-full py-6 px-3 flex mx-auto">
+      <button class="predictive-search__item" tabindex="-1">
+        Search for “{{ predictive_search.terms }}”
+      </button>
+    </div>
+    <div id="predictive-search-results-list" class="predictive-search__results-list max-w-6xl mx-auto" role="listbox" aria-labelledby="predictive-search-products">
+      <div class="grid gap-5">
+        {%- for product in predictive_search.resources.products -%}
+          <div class="w-full">
+            <div class="border bg-white shadow-lg rounded-lg overflow-hidden flex gap-5 items-center">
+              <a href="{{ product.url }}" class="predictive-search__item" tabindex="-1">
+                {%- if product.featured_media != blank -%}
+                  <div class="overflow-hidden">
+                    <img class="h-24 w-24 object-cover transition duration-700 ease-in-out hover:scale-105 transform" src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product_product.featured_image.alt }}">
+                  </div>
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
+                {%- endif -%}
+              </a>
+              <div class="flex flex-col">
+                <a href="{{product.url }}" class="text-gray-700 uppercase font-medium">{{ product.title }}</a>
+                <p class="text-gray-500">{{ product.price | money }}</p>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+
+      </div>
+    </div>
+  </div>
+{%- endif -%}

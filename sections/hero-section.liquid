@@ -1,0 +1,143 @@
+<div
+  id="shopify-section-{{ section.id }}"
+  class="relative"
+  style="background:{{ section.settings.custom_bg_color }};padding-top:{{section.settings.padding_top}}px; padding-bottom:{{section.settings.padding_bottom}}px">
+  <div class="container mx-auto flex flex-wrap  max-w-7xl px-2 md:px-0">
+
+    <div class="w-full px-2 md:px-0 lg:w-5/12 flex items-center">
+      <div class="hero-content">
+        {% if section.settings.title %}
+
+          <h2 class="mb-3 text-4xl font-bold leading-snug text-dark sm:text-[42px] lg:text-[40px] xl:text-[42px]" style="color: {{ section.settings.text_color }}">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+        {% if section.settings.description %}
+
+          <div class="mb-8 text-base" style="color: {{ section.settings.text_color }}">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+        <ul class="flex flex-wrap items-center gap-5">
+          {% if section.settings.button_label %}
+
+            <li>
+              <a href="{{ section.settings.button_url }}" class="inline-flex items-center justify-center rounded-lg primaryDarkBg py-4 px-6 text-center text-base font-normal text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10">
+                {{ section.settings.button_label }}
+              </a>
+            </li>
+
+          {% endif %}
+
+
+          {% if section.settings.button_label_1 %}
+
+            <li>
+              <a href="{{ section.settings.button_url_1 }}" class="inline-flex items-center justify-center rounded-lg primaryDarkBg py-4 px-6 text-center text-base font-normal text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10">
+                {{ section.settings.button_label_1 }}
+              </a>
+            </li>
+
+          {% endif %}
+        </ul>
+
+      </div>
+    </div>
+    <div class="hidden px-2 md:px-0 lg:block lg:w-1/12"></div>
+    <div class="w-full px-2 md:px-0 lg:w-6/12">
+      <div class="lg:ml-auto lg:text-right">
+        <div class="relative z-10 inline-block pt-11 lg:pt-0">
+          <img
+            src="{{section.settings.main_image | img_url: 'master'}}"
+            alt="hero"
+            class="max-w-full lg:ml-auto rounded-md" />
+          <span class="absolute -left-8 -bottom-8 z-[-1] hidden md:block">
+            {% render 'the-dots' %}
+          </span>
+          <span class="absolute -right-8 -top-8 z-[-1] hidden md:block">
+            {% render 'the-dots' %}
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{%- schema -%}
+  {
+    "name": "Hero Section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "custom_bg_color",
+        "label": "Section Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Section Text Color",
+        "default": "#000"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Some Text Here"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Desctiption",
+        "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla omnis, voluptas asperiores qui excepturi quam, provident ipsa iusto, voluptate iste minima</p>"
+      }, {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Choose Image"
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Text",
+        "default": "Read More"
+      }, {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button Link"
+      }, {
+        "type": "text",
+        "id": "button_label_1",
+        "label": "Button Text",
+        "default": "Read More"
+      }, {
+        "type": "url",
+        "id": "btn_url_1",
+        "label": "Button Link"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding Top",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "default": 10
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding Bottom",
+        "min": 0,
+        "max": 150,
+        "step": 2,
+        "unit": "px",
+        "default": 10
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Section"
+      }
+    ]
+  }
+{%- endschema -%}

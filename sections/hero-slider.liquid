@@ -1,0 +1,110 @@
+<div id="heroSlider" class="swiper-container overflow-hidden">
+  <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      <div class="hero__slider h-full swiper-slide" style="background: url({{block.settings.slide_image | img_url: 'master' }})">
+        <div class="container mx-auto h-full flex justify-center items-end ">
+          <div class="max-w-2xl text-center mx-auto p-3  relative -top-10">
+            <h1 class="text-6xl py-2 tracking-widest font-semibold primaryFontcolor uppercase">
+              {{ block.settings.title }}
+            </h1>
+            <p class="text-2xl primaryFontcolor py-3 tracking-widest uppercase">
+              {{ block.settings.subtitle }}
+            </p>
+            <div class="flex justify-center items-center py-2 rounded-md">
+              <a href="{{ block.settings.btn_link }}" class="site__button py-3 px-5 text-base uppercase tracking-wider text-white">
+                {{block.settings.btn_text }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{%- style -%}
+  #heroSlider {
+    height: 100vh;
+  }
+  .hero__slider {
+    background-size: cover !important;
+    background-position: center
+  }
+  .swiper-slide-active h1 {
+    animation: moveInLeft 1s ease-out;
+  }
+  .swiper-slide-active p {
+    animation: moveInRight 1s ease-out;
+  }
+  .swiper-slide-active a {
+    animation: moveInBottom 1s ease-out;
+  }
+{%- endstyle -%}
+
+<script>
+  var mySwiper = new Swiper('#heroSlider', {
+    loop: true,
+    spaceBetween: 50,
+    speed: 1000,
+    effect: 'fade',
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination"
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    }
+  });
+</script>
+
+{%- schema -%}
+  {
+    "name": "Hero Slider",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Slider"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Slide",
+        "name": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "slide_image",
+            "label": "Select Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text"
+          }, {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Slider",
+        "category": "Image"
+      }
+    ]
+
+  }
+{%- endschema -%}
